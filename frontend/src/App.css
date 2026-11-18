@@ -1,22 +1,48 @@
 
+/* =====================================================
+   1. GOOGLE FONTS
+   ===================================================== */
+
+/* Import two fonts from Google Fonts.
+   DM Sans is used for general text.
+   Manrope is used for headings and some brand elements. */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
+
+/* =====================================================
+   2. GLOBAL VARIABLES AND ROOT STYLING
+   ===================================================== */
+
+/* :root represents the highest-level HTML element.
+   CSS variables defined here can be reused throughout the stylesheet. */
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #19243b;
   background: #f5f7fc;
+
+  /* Improve how fonts are displayed in the browser. */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
+  /* Reusable color variables.
+     Instead of repeating the same color codes everywhere,
+     we can use var(--variable-name). */
   --navy: #111d35;
   --blue: #4263eb;
   --muted: #8792a7;
   --border: #e9edf5;
 }
 
+
+/* Apply box-sizing to every element.
+   This makes width and height calculations easier because
+   padding and borders are included in the element's total size. */
 * {
   box-sizing: border-box;
 }
 
+
+/* General body styling. */
 body {
   margin: 0;
   min-width: 320px;
@@ -24,20 +50,33 @@ body {
   background: #f5f7fc;
 }
 
+
+/* Make buttons, inputs and textareas use the same font as the page. */
 button, input, textarea {
   font: inherit;
 }
 
+
+/* Show a pointer cursor when users hover over buttons. */
 button {
   cursor: pointer;
   border: none;
 }
 
+
+/* Disabled buttons should look inactive
+   and should not suggest that they can be clicked. */
 button:disabled {
   opacity: .6;
   cursor: not-allowed;
 }
 
+
+/* =====================================================
+   3. INPUT FIELDS AND TEXTAREAS
+   ===================================================== */
+
+/* Common styling for text inputs and textareas. */
 input, textarea {
   width: 100%;
   padding: 13px 15px;
@@ -49,15 +88,22 @@ input, textarea {
   transition: .2s;
 }
 
+
+/* Change the input border and add a soft shadow
+   when the user clicks inside an input field. */
 input:focus, textarea:focus {
   border-color: #5472ef;
   box-shadow: 0 0 0 3px #4263eb16;
 }
 
+
+/* Style the placeholder text shown before the user types. */
 input::placeholder, textarea::placeholder {
   color: #aab2c1;
 }
 
+
+/* General styling for form labels. */
 label {
   display: block;
   margin: 20px 0 8px;
@@ -66,13 +112,23 @@ label {
   font-weight: 700;
 }
 
+
+/* Textareas have a minimum height.
+   Users can resize them vertically. */
 textarea {
   min-height: 105px;
   resize: vertical;
 }
 
-/* Login */
 
+/* =====================================================
+   4. LOGIN PAGE
+   ===================================================== */
+
+/* Main login page.
+   CSS Grid divides the screen into two equal columns:
+   left side = branding and introduction
+   right side = login form */
 .login-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -80,6 +136,8 @@ textarea {
   background: #fff;
 }
 
+
+/* Left decorative section of the login page. */
 .login-decoration {
   position: relative;
   display: flex;
@@ -88,9 +146,15 @@ textarea {
   overflow: hidden;
   padding: 55px 9%;
   color: white;
+
+  /* Gradient background creates a smooth transition between colors. */
   background: linear-gradient(145deg, #111d35 0%, #1b3261 65%, #294e9d 100%);
 }
 
+
+/* Create decorative circular shapes behind the login introduction.
+   ::before and ::after are CSS pseudo-elements.
+   They create visual elements without adding HTML. */
 .login-decoration::before,
 .login-decoration::after {
   position: absolute;
@@ -100,6 +164,8 @@ textarea {
   pointer-events: none;
 }
 
+
+/* First decorative circle. */
 .login-decoration::before {
   width: 500px;
   height: 500px;
@@ -107,6 +173,8 @@ textarea {
   top: 20%;
 }
 
+
+/* Second decorative circle. */
 .login-decoration::after {
   width: 330px;
   height: 330px;
@@ -114,6 +182,9 @@ textarea {
   top: 30%;
 }
 
+
+/* Shared layout for the login brand and sidebar brand.
+   Flexbox places the logo and text beside each other. */
 .login-brand, .sidebar-brand {
   display: flex;
   align-items: center;
@@ -122,6 +193,9 @@ textarea {
   letter-spacing: 1.5px;
 }
 
+
+/* ACME logo design.
+   CSS Grid centers the letter A inside the logo. */
 .brand-logo {
   display: grid;
   place-items: center;
@@ -136,6 +210,8 @@ textarea {
   box-shadow: 0 7px 18px #2947c555;
 }
 
+
+/* Main introduction inside the left login section. */
 .login-hero {
   position: relative;
   z-index: 1;
@@ -143,6 +219,9 @@ textarea {
   margin: auto 0;
 }
 
+
+/* Shared small heading style.
+   These labels are used above major headings. */
 .hero-label, .form-eyebrow, .section-eyebrow {
   color: #7894ff;
   font-size: 11px;
@@ -150,15 +229,22 @@ textarea {
   letter-spacing: 2px;
 }
 
+
+/* Main login introduction heading. */
 .login-hero h1 {
   max-width: 450px;
   margin: 22px 0;
   font-family: Manrope, sans-serif;
+
+  /* clamp() makes the heading responsive.
+     It cannot become smaller than 42px or larger than 66px. */
   font-size: clamp(42px, 5vw, 66px);
   line-height: 1.13;
   letter-spacing: -2px;
 }
 
+
+/* Supporting introduction paragraph. */
 .login-hero p {
   max-width: 420px;
   color: #c1cbe0;
@@ -166,6 +252,8 @@ textarea {
   line-height: 1.8;
 }
 
+
+/* Decorative stars below the introduction. */
 .hero-decoration {
   display: flex;
   gap: 25px;
@@ -174,11 +262,15 @@ textarea {
   font-size: 25px;
 }
 
+
+/* Make the middle star larger and white. */
 .hero-decoration span:nth-child(2) {
   color: #fff;
   font-size: 37px;
 }
 
+
+/* Small text at the bottom of the left login section. */
 .login-footer-text {
   position: relative;
   z-index: 1;
@@ -186,21 +278,32 @@ textarea {
   font-size: 12px;
 }
 
+
+/* Right side of the login page.
+   Grid centers the login card horizontally and vertically. */
 .login-panel {
   display: grid;
   place-items: center;
   padding: 35px;
 }
 
+
+/* Login form container.
+   max-width prevents the form from becoming too wide. */
 .login-card {
   width: 100%;
   max-width: 410px;
 }
 
+
+/* The mobile brand is hidden on larger screens.
+   It becomes visible on smaller screens later. */
 .mobile-brand {
   display: none;
 }
 
+
+/* Login form heading. */
 .login-card h2 {
   margin: 13px 0 8px;
   font-family: Manrope, sans-serif;
@@ -208,6 +311,8 @@ textarea {
   letter-spacing: -.8px;
 }
 
+
+/* Supporting text below the login heading. */
 .login-description {
   margin-bottom: 32px;
   color: var(--muted);
@@ -215,11 +320,15 @@ textarea {
   line-height: 1.7;
 }
 
+
+/* Make the login button fill the available width. */
 .login-submit {
   width: 100%;
   margin-top: 27px;
 }
 
+
+/* Security information below the login form. */
 .secure-note {
   margin-top: 30px;
   color: #98a2b4;
@@ -227,8 +336,13 @@ textarea {
   font-size: 12px;
 }
 
-/* Buttons */
 
+/* =====================================================
+   5. COMMON BUTTON STYLES
+   ===================================================== */
+
+/* Shared design for primary actions:
+   login, registration and creating an event. */
 .primary-button, .register-button, .banner-button {
   padding: 13px 20px;
   border-radius: 9px;
@@ -239,18 +353,29 @@ textarea {
   transition: .2s;
 }
 
+
+/* Hover effect:
+   darken the button and move it slightly upward. */
 .primary-button:hover, .register-button:hover, .banner-button:hover {
   background: #304ecb;
   transform: translateY(-1px);
 }
 
-/* Dashboard layout */
 
+/* =====================================================
+   6. DASHBOARD LAYOUT
+   ===================================================== */
+
+/* Main dashboard uses Flexbox.
+   The sidebar and main content sit beside each other. */
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
 }
 
+
+/* Sidebar navigation.
+   Fixed positioning keeps it in place while the main content scrolls. */
 .sidebar {
   position: fixed;
   top: 0;
@@ -265,19 +390,27 @@ textarea {
   color: white;
 }
 
+
+/* Sidebar logo and brand spacing. */
 .sidebar-brand {
   padding: 0 5px 38px;
 }
 
+
+/* Display the brand title and subtitle on separate lines. */
 .sidebar-brand strong, .sidebar-brand span {
   display: block;
 }
 
+
+/* Main ACME brand text. */
 .sidebar-brand strong {
   font-family: Manrope, sans-serif;
   font-size: 17px;
 }
 
+
+/* Small EVENTS PORTAL subtitle. */
 .sidebar-brand span {
   margin-top: 4px;
   color: #8999b6;
@@ -285,6 +418,8 @@ textarea {
   letter-spacing: 2px;
 }
 
+
+/* Workspace label above the navigation links. */
 .sidebar-label {
   margin: 0 12px 13px;
   color: #7787a5;
@@ -293,11 +428,15 @@ textarea {
   letter-spacing: 1.7px;
 }
 
+
+/* Arrange sidebar navigation buttons vertically. */
 .sidebar-nav {
   display: grid;
   gap: 8px;
 }
 
+
+/* Individual navigation button. */
 .nav-item {
   display: flex;
   align-items: center;
@@ -312,21 +451,29 @@ textarea {
   transition: .2s;
 }
 
+
+/* Give the navigation icon a consistent width. */
 .nav-item > span:first-child {
   width: 19px;
   font-size: 17px;
   text-align: center;
 }
 
+
+/* Change navigation appearance when hovered or active. */
 .nav-item:hover, .nav-item.active {
   background: #263c67;
   color: white;
 }
 
+
+/* Add a colored line to the active navigation item. */
 .nav-item.active {
   box-shadow: inset 3px 0 #7591ff;
 }
 
+
+/* Small number badge showing the total event count. */
 .nav-count {
   margin-left: auto;
   padding: 3px 8px;
@@ -335,10 +482,15 @@ textarea {
   font-size: 11px;
 }
 
+
+/* Push the profile and logout section to the bottom of the sidebar.
+   margin-top: auto uses the available Flexbox space. */
 .sidebar-bottom {
   margin-top: auto;
 }
 
+
+/* User profile section in the sidebar. */
 .profile-card {
   display: flex;
   align-items: center;
@@ -347,6 +499,8 @@ textarea {
   border-top: 1px solid #ffffff18;
 }
 
+
+/* Circular user avatar. */
 .avatar, .topbar-avatar {
   display: grid;
   place-items: center;
@@ -359,10 +513,15 @@ textarea {
   font-weight: 800;
 }
 
+
+/* Display user name and role on separate lines. */
 .profile-info strong, .profile-info span {
   display: block;
 }
 
+
+/* User name inside the sidebar.
+   Overflow handling prevents long names from breaking the layout. */
 .profile-info strong {
   max-width: 145px;
   overflow: hidden;
@@ -372,6 +531,8 @@ textarea {
   white-space: nowrap;
 }
 
+
+/* User role, such as admin or employee. */
 .profile-info span {
   margin-top: 4px;
   color: #91a1bf;
@@ -379,6 +540,8 @@ textarea {
   text-transform: capitalize;
 }
 
+
+/* Logout button. */
 .logout-button {
   width: 100%;
   padding: 12px;
@@ -389,21 +552,35 @@ textarea {
   font-size: 13px;
 }
 
+
+/* Logout button hover effect. */
 .logout-button:hover {
   background: #ffffff18;
   color: white;
 }
 
+
+/* Add spacing between logout icon and text. */
 .logout-button span {
   margin-left: 9px;
 }
 
+
+/* Main content area.
+   Its width and left margin account for the fixed sidebar. */
 .main-content {
   width: calc(100% - 250px);
   min-height: 100vh;
   margin-left: 250px;
 }
 
+
+/* =====================================================
+   7. TOP NAVIGATION BAR
+   ===================================================== */
+
+/* Sticky header stays at the top while scrolling.
+   backdrop-filter adds a subtle background blur. */
 .topbar {
   position: sticky;
   top: 0;
@@ -418,6 +595,8 @@ textarea {
   backdrop-filter: blur(10px);
 }
 
+
+/* Small breadcrumb text above the page heading. */
 .topbar-label {
   color: #9aa4b5;
   font-size: 10px;
@@ -425,18 +604,24 @@ textarea {
   letter-spacing: 1.3px;
 }
 
+
+/* Current page heading. */
 .topbar h2 {
   margin: 5px 0 0;
   font-family: Manrope, sans-serif;
   font-size: 19px;
 }
 
+
+/* Right side of the topbar contains status and avatar. */
 .topbar-right {
   display: flex;
   align-items: center;
   gap: 23px;
 }
 
+
+/* System online status indicator. */
 .online-indicator {
   display: flex;
   align-items: center;
@@ -445,6 +630,8 @@ textarea {
   font-size: 11px;
 }
 
+
+/* Green dot beside the online status. */
 .online-indicator span {
   width: 7px;
   height: 7px;
@@ -453,19 +640,28 @@ textarea {
   box-shadow: 0 0 0 4px #28b87920;
 }
 
+
+/* Slightly smaller avatar in the topbar. */
 .topbar-avatar {
   width: 36px;
   height: 36px;
 }
 
+
+/* Main content spacing and maximum width. */
 .page-content {
   max-width: 1500px;
   margin: auto;
   padding: 32px 4.5% 20px;
 }
 
-/* Welcome banner */
 
+/* =====================================================
+   8. DASHBOARD WELCOME BANNER
+   ===================================================== */
+
+/* Main welcome banner.
+   Flexbox separates the welcome text and decorative artwork. */
 .welcome-banner {
   position: relative;
   display: flex;
@@ -478,6 +674,8 @@ textarea {
   color: white;
 }
 
+
+/* Small heading above the welcome message. */
 .banner-label {
   color: #b0c1ff;
   font-size: 10px;
@@ -485,6 +683,8 @@ textarea {
   letter-spacing: 1.8px;
 }
 
+
+/* Personalized welcome heading. */
 .welcome-banner h1 {
   margin: 12px 0 7px;
   font-family: Manrope, sans-serif;
@@ -492,11 +692,15 @@ textarea {
   letter-spacing: -.7px;
 }
 
+
+/* Supporting welcome text. */
 .welcome-banner p {
   color: #d1daef;
   font-size: 13px;
 }
 
+
+/* Create-event shortcut button inside the welcome banner. */
 .banner-button {
   margin-top: 12px;
   padding: 11px 16px;
@@ -504,10 +708,14 @@ textarea {
   color: #294a9c;
 }
 
+
+/* Hover effect for the banner button. */
 .banner-button:hover {
   background: #e9eeff;
 }
 
+
+/* Decorative artwork on the right side of the banner. */
 .banner-art {
   position: relative;
   display: grid;
@@ -521,6 +729,8 @@ textarea {
   letter-spacing: 5px;
 }
 
+
+/* Two decorative circular borders behind the EVENTS text. */
 .banner-art::before, .banner-art::after {
   position: absolute;
   content: "";
@@ -528,42 +738,58 @@ textarea {
   border-radius: 50%;
 }
 
+
+/* Outer circle. */
 .banner-art::before {
   width: 190px;
   height: 190px;
 }
 
+
+/* Inner circle. */
 .banner-art::after {
   width: 145px;
   height: 145px;
 }
 
+
+/* Decorative stars inside the banner artwork. */
 .banner-art span {
   position: absolute;
   z-index: 1;
   color: #c6d3ff;
 }
 
+
+/* Position the first star. */
 .banner-art span:first-child {
   top: 12px;
   right: 24px;
   font-size: 30px;
 }
 
+
+/* Position the second star. */
 .banner-art span:nth-child(2) {
   bottom: 8px;
   left: 10px;
   font-size: 24px;
 }
 
+
+/* Position the third star. */
 .banner-art span:nth-child(3) {
   top: 40px;
   left: 17px;
   font-size: 16px;
 }
 
-/* Stats */
 
+/* =====================================================
+   9. DASHBOARD STATISTICS
+   ===================================================== */
+
+/* Display three statistics cards in a responsive grid. */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -571,6 +797,8 @@ textarea {
   margin: 23px 0 38px;
 }
 
+
+/* Individual statistics card. */
 .stat-card {
   position: relative;
   padding: 21px;
@@ -580,6 +808,8 @@ textarea {
   box-shadow: 0 4px 15px #1c2c4b05;
 }
 
+
+/* Shared design for statistic icons. */
 .stat-icon {
   display: grid;
   place-items: center;
@@ -590,27 +820,37 @@ textarea {
   font-size: 19px;
 }
 
+
+/* Blue icon background. */
 .stat-icon.blue {
   background: #edf1ff;
   color: #4965df;
 }
 
+
+/* Purple icon background. */
 .stat-icon.purple {
   background: #f2edff;
   color: #8660dc;
 }
 
+
+/* Green icon background. */
 .stat-icon.green {
   background: #e9f8f0;
   color: #2aab71;
 }
 
+
+/* Statistic labels. */
 .stat-card > span {
   display: block;
   color: #758198;
   font-size: 12px;
 }
 
+
+/* Large statistic values. */
 .stat-card > strong {
   display: block;
   margin: 7px 0 4px;
@@ -618,22 +858,32 @@ textarea {
   font-size: 27px;
 }
 
+
+/* Special styling for the user's role value. */
 .stat-card .role-stat {
   font-size: 22px;
   text-transform: capitalize;
 }
 
+
+/* Small supporting text under each statistic. */
 .stat-card small {
   color: #a2abba;
   font-size: 11px;
 }
 
-/* Event sections */
 
+/* =====================================================
+   10. EVENT SECTIONS AND HEADINGS
+   ===================================================== */
+
+/* Main event section container. */
 .content-section {
   margin-top: 10px;
 }
 
+
+/* Section heading and action button layout. */
 .section-title {
   display: flex;
   align-items: center;
@@ -642,6 +892,8 @@ textarea {
   margin-bottom: 22px;
 }
 
+
+/* Event section heading. */
 .section-title h2 {
   margin: 7px 0 5px;
   font-family: Manrope, sans-serif;
@@ -649,12 +901,16 @@ textarea {
   letter-spacing: -.5px;
 }
 
+
+/* Supporting section description. */
 .section-title p {
   margin: 0;
   color: var(--muted);
   font-size: 12px;
 }
 
+
+/* Shared design for View All and Refresh buttons. */
 .text-button, .refresh-button {
   padding: 10px 14px;
   border-radius: 8px;
@@ -664,16 +920,26 @@ textarea {
   font-weight: 700;
 }
 
+
+/* Hover effect for section buttons. */
 .text-button:hover, .refresh-button:hover {
   background: #e0e7ff;
 }
 
+
+/* Display event cards in three columns on large screens. */
 .event-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
+
+/* =====================================================
+   11. EVENT CARDS
+   ===================================================== */
+
+/* Main event card container. */
 .event-card {
   overflow: hidden;
   border: 1px solid var(--border);
@@ -682,11 +948,15 @@ textarea {
   transition: .25s;
 }
 
+
+/* Lift the card slightly when the user hovers over it. */
 .event-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px #1d2d4c0d;
 }
 
+
+/* Decorative top section of each event card. */
 .event-card-cover {
   position: relative;
   display: flex;
@@ -698,6 +968,8 @@ textarea {
   color: white;
 }
 
+
+/* Decorative circle on the event card cover. */
 .event-card-cover::after {
   position: absolute;
   right: -35px;
@@ -709,18 +981,26 @@ textarea {
   content: "";
 }
 
+
+/* Blue event card theme. */
 .event-card-cover.blue {
   background: linear-gradient(120deg, #3657ad, #6986e8);
 }
 
+
+/* Purple event card theme. */
 .event-card-cover.purple {
   background: linear-gradient(120deg, #5c4a9e, #9a82d9);
 }
 
+
+/* Orange event card theme. */
 .event-card-cover.orange {
   background: linear-gradient(120deg, #b66b3b, #e3a56d);
 }
 
+
+/* Small corporate event label. */
 .cover-label {
   padding: 6px 9px;
   border: 1px solid #ffffff50;
@@ -731,6 +1011,8 @@ textarea {
   letter-spacing: 1px;
 }
 
+
+/* Decorative star on the card cover. */
 .cover-symbol {
   position: absolute;
   top: 37px;
@@ -739,6 +1021,8 @@ textarea {
   opacity: .75;
 }
 
+
+/* Event ID at the bottom of the card cover. */
 .cover-id {
   position: absolute;
   bottom: 13px;
@@ -747,10 +1031,15 @@ textarea {
   font-size: 10px;
 }
 
+
+/* Content area inside the event card. */
 .event-card-body {
   padding: 18px;
 }
 
+
+/* Event title.
+   overflow-wrap prevents long words from breaking the card layout. */
 .event-card-body h3 {
   overflow-wrap: anywhere;
   margin: 0 0 9px;
@@ -758,6 +1047,9 @@ textarea {
   font-size: 16px;
 }
 
+
+/* Event description.
+   Line clamping limits the description to two visible lines. */
 .event-description {
   display: -webkit-box;
   min-height: 39px;
@@ -769,6 +1061,8 @@ textarea {
   -webkit-line-clamp: 2;
 }
 
+
+/* Arrange date, time, location and capacity vertically. */
 .event-meta {
   display: grid;
   gap: 12px;
@@ -777,6 +1071,8 @@ textarea {
   border-top: 1px solid #edf0f5;
 }
 
+
+/* Layout for each event detail row. */
 .event-meta > div {
   display: flex;
   align-items: center;
@@ -786,6 +1082,8 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+
+/* Small icon backgrounds beside event information. */
 .meta-icon {
   display: grid;
   place-items: center;
@@ -798,6 +1096,8 @@ textarea {
   font-size: 13px;
 }
 
+
+/* Event action button container. */
 .event-card-action button {
   width: 100%;
   padding: 11px;
@@ -806,26 +1106,40 @@ textarea {
   font-weight: 700;
 }
 
+
+/* Delete button styling for administrators. */
 .delete-button {
   background: #fff0f0;
   color: #cf4d55;
 }
 
+
+/* Delete button hover effect. */
 .delete-button:hover {
   background: #ffe1e2;
 }
 
+
+/* Register button styling for employees. */
 .register-button {
   background: #4263eb;
   color: white;
 }
 
-/* Create event page */
 
+/* =====================================================
+   12. CREATE EVENT PAGE
+   ===================================================== */
+
+/* Limit the overall width of the create-event page. */
 .create-page {
   max-width: 1100px;
 }
 
+
+/* Create-event layout:
+   left column = form
+   right column = helpful tips */
 .create-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 280px;
@@ -833,6 +1147,8 @@ textarea {
   gap: 22px;
 }
 
+
+/* Main event creation form card. */
 .create-card {
   padding: 28px;
   border: 1px solid var(--border);
@@ -840,6 +1156,8 @@ textarea {
   background: white;
 }
 
+
+/* Heading area inside the form. */
 .form-card-heading {
   display: flex;
   align-items: center;
@@ -848,6 +1166,8 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
+
+/* Icon container in the form heading. */
 .form-icon {
   display: grid;
   place-items: center;
@@ -859,27 +1179,37 @@ textarea {
   font-size: 23px;
 }
 
+
+/* Form heading text. */
 .form-card-heading h3 {
   margin: 0;
   font-size: 15px;
 }
 
+
+/* Supporting text under the form heading. */
 .form-card-heading p {
   margin: 5px 0 0;
   color: var(--muted);
   font-size: 11px;
 }
 
+
+/* Smaller text inside the create-event form inputs. */
 .create-card input, .create-card textarea {
   font-size: 12px;
 }
 
+
+/* Display location and capacity inputs in two columns. */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
+
+/* Layout for Cancel and Publish buttons. */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -889,6 +1219,8 @@ textarea {
   border-top: 1px solid var(--border);
 }
 
+
+/* Cancel button styling. */
 .cancel-button {
   padding: 12px 18px;
   border: 1px solid var(--border);
@@ -899,6 +1231,8 @@ textarea {
   font-weight: 700;
 }
 
+
+/* Helpful tips panel beside the event form. */
 .create-tip {
   padding: 24px;
   border: 1px solid #e3eaff;
@@ -906,6 +1240,8 @@ textarea {
   background: #f0f4ff;
 }
 
+
+/* Decorative icon inside the tips panel. */
 .tip-icon {
   display: grid;
   place-items: center;
@@ -917,34 +1253,49 @@ textarea {
   font-size: 20px;
 }
 
+
+/* Tips panel heading. */
 .create-tip h3 {
   margin: 19px 0 9px;
   font-family: Manrope, sans-serif;
   font-size: 18px;
 }
 
+
+/* Tips paragraph and list item styling. */
 .create-tip p, .create-tip li {
   color: #77849d;
   font-size: 11px;
   line-height: 1.8;
 }
 
+
+/* Divider separating tips and checklist. */
 .tip-divider {
   height: 1px;
   margin: 20px 0;
   background: #dce4f5;
 }
 
+
+/* Checklist heading. */
 .create-tip strong {
   font-size: 12px;
 }
 
+
+/* Indent checklist items. */
 .create-tip ul {
   padding-left: 18px;
 }
 
-/* Search and empty states */
 
+/* =====================================================
+   13. SEARCH BOX AND EMPTY STATES
+   ===================================================== */
+
+/* Search box layout.
+   Flexbox places the search icon and input beside each other. */
 .search-box {
   display: flex;
   align-items: center;
@@ -958,15 +1309,21 @@ textarea {
   color: #8190a8;
 }
 
+
+/* Search icon size. */
 .search-box span {
   font-size: 22px;
 }
 
+
+/* Remove the input border because the parent already has a border. */
 .search-box input {
   border: none;
   box-shadow: none;
 }
 
+
+/* Empty state displayed when there are no matching events. */
 .empty-state {
   padding: 55px 15px;
   border: 1px dashed #dce2ee;
@@ -975,6 +1332,8 @@ textarea {
   text-align: center;
 }
 
+
+/* Icon shown in the empty state. */
 .empty-icon {
   display: grid;
   place-items: center;
@@ -987,18 +1346,26 @@ textarea {
   font-size: 22px;
 }
 
+
+/* Empty-state heading. */
 .empty-state h3 {
   margin: 0 0 7px;
   font-size: 15px;
 }
 
+
+/* Empty-state supporting text. */
 .empty-state p {
   color: var(--muted);
   font-size: 12px;
 }
 
-/* Alerts and footer */
 
+/* =====================================================
+   14. ALERT MESSAGES AND DASHBOARD FOOTER
+   ===================================================== */
+
+/* Common layout for success and error messages. */
 .alert {
   margin-bottom: 18px;
   padding: 13px 16px;
@@ -1006,16 +1373,22 @@ textarea {
   font-size: 12px;
 }
 
+
+/* Error alert styling. */
 .alert.error {
   background: #fff0f0;
   color: #bc4149;
 }
 
+
+/* Success alert styling. */
 .alert.success {
   background: #eaf8f0;
   color: #21804e;
 }
 
+
+/* Footer at the bottom of the dashboard. */
 .dashboard-footer {
   display: flex;
   justify-content: space-between;
@@ -1027,32 +1400,48 @@ textarea {
   font-size: 10px;
 }
 
-/* Responsive */
 
+/* =====================================================
+   15. RESPONSIVE DESIGN
+   ===================================================== */
+
+/* Apply these styles when the screen width is 1100px or smaller.
+   This helps the dashboard fit on tablets and smaller laptops. */
 @media (max-width: 1100px) {
+
+  /* Reduce event cards from three columns to two. */
   .event-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Stack the event form and tips panel vertically. */
   .create-layout {
     grid-template-columns: 1fr;
   }
 }
 
+
+/* Apply these styles on screens 750px or smaller.
+   This is the main tablet/mobile layout adjustment. */
 @media (max-width: 750px) {
+
+  /* Login page changes from two columns to one. */
   .login-page {
     grid-template-columns: 1fr;
   }
 
+  /* Hide the large decorative login section on mobile. */
   .login-decoration {
     display: none;
   }
 
+  /* Center the login form on the mobile screen. */
   .login-panel {
     min-height: 100vh;
     padding: 25px;
   }
 
+  /* Show the smaller brand logo above the login form. */
   .mobile-brand {
     display: flex;
     align-items: center;
@@ -1063,6 +1452,7 @@ textarea {
     letter-spacing: 1px;
   }
 
+  /* Sidebar becomes a normal full-width section on mobile. */
   .sidebar {
     position: relative;
     top: auto;
@@ -1071,24 +1461,29 @@ textarea {
     padding: 12px 15px;
   }
 
+  /* Dashboard sections stack vertically. */
   .dashboard-layout {
     display: block;
   }
 
+  /* Reduce sidebar brand spacing. */
   .sidebar-brand {
     padding: 0 4px 13px;
   }
 
+  /* Make sidebar navigation horizontal and scrollable. */
   .sidebar-nav {
     display: flex;
     gap: 6px;
     overflow-x: auto;
   }
 
+  /* Hide sidebar label and profile section on mobile. */
   .sidebar-label, .sidebar-bottom {
     display: none;
   }
 
+  /* Navigation buttons become smaller and stay in one row. */
   .nav-item {
     width: auto;
     flex-shrink: 0;
@@ -1096,30 +1491,36 @@ textarea {
     font-size: 11px;
   }
 
+  /* Hide event count badges to save mobile space. */
   .nav-count {
     display: none;
   }
 
+  /* Main content takes the full screen width. */
   .main-content {
     width: 100%;
     margin-left: 0;
   }
 
+  /* Topbar no longer needs sticky positioning on mobile. */
   .topbar {
     position: relative;
     min-height: 70px;
     padding: 12px 20px;
   }
 
+  /* Reduce dashboard content spacing. */
   .page-content {
     padding: 22px 18px;
   }
 
+  /* Reduce welcome banner size and padding. */
   .welcome-banner {
     min-height: 200px;
     padding: 25px;
   }
 
+  /* Reduce decorative artwork size. */
   .banner-art {
     width: 120px;
     font-size: 20px;
@@ -1135,14 +1536,17 @@ textarea {
     height: 85px;
   }
 
+  /* Reduce welcome heading size. */
   .welcome-banner h1 {
     font-size: 25px;
   }
 
+  /* Reduce spacing between statistic cards. */
   .stats-grid {
     gap: 10px;
   }
 
+  /* Make statistic cards more compact. */
   .stat-card {
     padding: 14px;
   }
@@ -1156,57 +1560,76 @@ textarea {
   }
 }
 
+
+/* Apply these styles on small mobile screens,
+   such as phones with a width of 520px or less. */
 @media (max-width: 520px) {
+
+  /* Display one event card per row. */
   .event-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Stack statistic cards vertically. */
   .stats-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Hide decorative artwork to save space. */
   .banner-art {
     display: none;
   }
 
+  /* Keep the welcome banner compact. */
   .welcome-banner {
     min-height: 190px;
   }
 
+  /* Align section title content toward the top. */
   .section-title {
     align-items: flex-start;
   }
 
+  /* Reduce section heading size. */
   .section-title h2 {
     font-size: 18px;
   }
 
+  /* Make the View All button smaller and prevent wrapping. */
   .text-button {
     font-size: 10px;
     white-space: nowrap;
   }
 
+  /* Stack location and capacity inputs vertically. */
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
+  /* Reduce create form padding. */
   .create-card {
     padding: 18px;
   }
 
+  /* Stack form action buttons vertically.
+     column-reverse places Publish above Cancel. */
   .form-actions {
     flex-direction: column-reverse;
   }
 
+  /* Make both form buttons full width. */
   .form-actions button {
     width: 100%;
   }
 
+  /* Stack footer text vertically. */
   .dashboard-footer {
     flex-direction: column;
   }
 
+  /* Hide the words "System Online" on very small screens.
+     Keep the green status dot visible. */
   .online-indicator {
     font-size: 0;
   }
