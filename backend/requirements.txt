@@ -1,6 +1,22 @@
+
+# FastAPI: Framework used to build REST APIs and backend endpoints.
 fastapi
+
+# Uvicorn: ASGI server used to run the FastAPI application.
+# [standard] installs additional recommended performance features.
 uvicorn[standard]
+
+# SQLAlchemy: Used to communicate with the database using Python.
+# [asyncio] provides support for asynchronous database operations.
 sqlalchemy[asyncio]
+
+# asyncpg: PostgreSQL driver used for asynchronous database connections.
 asyncpg
+
+# Pydantic Settings: Reads application configuration from environment variables
+# and the .env file, such as DATABASE_URL and SECRET_KEY.
 pydantic-settings
+
+# PyJWT: Used to create and verify JSON Web Tokens (JWT)
+# for user authentication.
 PyJWT
